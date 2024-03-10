@@ -1,0 +1,157 @@
+{% extends "layout.html" %}
+{% load static %}
+{% load humanize %}
+
+
+{% comment %} ดึง Best Seller {% endcomment %}
+{% block navBar %}
+<!-- Header Start -->
+<header>
+    <div class="container">
+        <nav>
+            <div class="nav-left">
+                <ul>
+                    <li><a href="/">Back To Main Page</a></li>
+                </ul>
+            </div>
+            <div class="nav-logo">
+                <a href="/">Nice Day |
+                    <span>
+                        "น้ำหอมก้านไม้"
+                    </span>
+                </a>
+            </div>
+            <div class="nav-right">
+                <div class="search-box">
+                    <form method="POST" action="{% url 'search' %}">
+                        {% csrf_token %}
+                    <input type="text" placeholder="Search..." name="searched">
+                    <button>
+                        <i class="bi bi-search"></i>
+                    </button>
+                    </form>
+                </div>
+                
+                {% if request.user.is_authenticated %}
+                        <div class="icon user dropdown">
+                            <a href="#">
+                                <i class="bi bi-person-circle"></i>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dm" href="/orderHistory">Hello, {{ request.user.username }} ! </a>
+                                <a class="dm" href="{% url 'logout' %}">Logout</a>
+                            </div>
+                        </div>
+
+                        {% comment %} ถ้ามีการ Login จะให้แสดง ตะกร้าสินค้า {% endcomment %}
+                        <div class="icon cart">
+                            <a href="/cart">
+                                <i class="bi bi-bag"></i>
+                            </a>
+                        </div>
+
+                    {% else %}
+                        <div class="icon user dropdown">
+                            <a href="#">
+                                <i class="bi bi-person-circle"></i>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dm" href="{% url 'register' %}">Register</a>
+                                <a class="dm" href="{% url 'login' %}">Login</a>
+                            </div>
+                        </div>
+                        {% comment %} ถ้าไม่มีการ Login จะไม่ให้แสดง ตะกร้าสินค้า {% endcomment %}
+                    {% endif %}
+
+            </div>
+        </nav>
+    </div>
+</header>
+<!-- Header End -->
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    
+    <div class="Top-head">
+        <h1>
+            Best Seller of the Month
+        </h1>
+    </div>
+
+    <div class="Product">
+
+        <div class="Product-card" id="productCard">
+            <div class="Product-card-left">
+                <div class="Pro-card-img">
+                    <img src="{{ productBest.image.url }}" alt="">
+                </div>
+            </div>
+
+            <div class="Product-card-right">
+                <div class="Pro-card-head">
+                    <h2>
+                        Reed Diffuser | {{ productBest.name }}
+                    </h2>
+                </div>
+                <hr>
+                <div class="Pro-card-desc">
+                    <p>
+                        {{ productBest.description }}
+                    </p>
+                </div>
+                <div class="Pro-cart-total">
+                    <p>
+                        สินค้าคงเหลือ {{ productBest.stock }} ชิ้น
+                    </P>
+                </div>
+                <div class="Pro-card-btm">
+                    <div class="Pro-card-price">
+                        <p>
+                            Price :
+                            <span>
+                                {{ productBest.price | intcomma }}
+                            </span>
+                            Baht
+                        </p>
+                    </div>
+    
+                    {% if productBest.stock <= 0 %}
+                        <p style="text-decoration: line-through; color: red;">
+                            สินค้าหมด
+                        </p>
+                    {% else %}
+                    <div class="Pro-card-icon">
+                        <a href="{% url 'addCart' productBest.id %}">
+                            <i class="bi bi-bag"></i>
+                        </a>
+                    </div>
+                    {% endif %}
+    
+                </div>
+                <div class="Product-btn">
+                    <div class="Cancel-btn">
+                        <a href="/">Back To Main Page</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+
+{% comment %} {% block navFooter %}
+<nav>
+    <div class="copy-right" id="copy-right">
+        <h1>
+            Copyright &copy; <span id="startYear"></span> - <span id="currentYear"></span> By Nice Day | <span
+                id="logoName">"น้ำหอมก้านไม้"</span>
+        </h1>
+    </div>
+</nav>
+{% endblock %} {% endcomment %}

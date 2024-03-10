@@ -1,0 +1,133 @@
+/* Login Modal */
+.modal-log {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.modal-log-card {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 520px;
+    border-radius: 10px;
+    background: #fff;
+    z-index: 10;
+    padding: 10px;
+    position: relative;
+    margin-top: 15vh;
+    margin-bottom: 10vh;
+}
+
+
+.modal-log-card .log-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.modal-log-card .log-card .log-top {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: .5rem;
+}
+.modal-log-card .log-top h1 {
+    color: #855b3c;
+    font-size: 26px;
+}
+.modal-log-card .log-top h1 span {
+    font-size: 20px;
+}
+.modal-log-card .log-top p {
+    color: #855b3c;
+    font-size: 14px;
+    margin: 5px 0;
+}
+.modal-log-card .log-card .log-middle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: .5rem;
+}
+
+/* #emailForm,
+#pswForm,
+#psw-repeatForm {
+    border-radius: 10px;
+} */
+
+.log-form-top .alert {
+    font-size: 16px;
+    text-align: center;
+    padding: 1.2rem;
+    color: #fff;
+    border-radius: 6px;
+}
+
+.log-middle form .log-form-top input[type=text],
+.log-middle form .log-form-top input[type=password] {
+    width: 100%;
+    padding: 12px;
+    margin: 5px 0 15px 0;
+    display: inline-block;
+    border: none;
+    background-color: #b97449;
+}
+.log-middle form .log-form-top input[type=text]:focus,
+.log-middle form .log-form-top input[type=password]:focus {
+    background-color: #eec5ac;
+    color: #855b3c;
+    outline: none;
+}
+.registerbtn {
+    background-color: #b97449;
+    color: #fff;
+    padding: 12px 0;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 6px;
+    opacity: 0.8;
+}
+.registerbtn:hover {
+    opacity: 1;
+}
+.signin {
+    background-color: #f1f1f1;
+    text-align: center;
+    padding: 12px;
+    width: 96%;
+    margin: 0 auto;
+    border-radius: 6px;
+}
+.log-middle form a {
+    color: dodgerblue;
+    opacity: 0.9;
+}
+form a:hover {
+    opacity: 1;
+}
+form .log-form-top {
+    padding: .6rem;
+}
+
+form .log-form-top b {
+    color: #855b3c;
+    font-size: 14px;
+}
+form .log-form-top input::placeholder {
+    color: #fff;
+}
+form .form-btm p {
+    color: #855b3c;
+    font-size: 14px;
+}
+form .form-btm a {
+    cursor: pointer;
+}
+
+
+
+

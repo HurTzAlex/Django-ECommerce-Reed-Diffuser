@@ -1,0 +1,215 @@
+
+/* Product Card */
+.Top-head h1 {
+    display: inline-block;
+    text-align: left;
+    font-size: 36px;
+    color: #855b3c;
+    padding: 1rem;
+    margin-top: 30px;
+    /* border: 10px solid brown; */
+}
+.Product {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 10px solid brown; */
+    margin-bottom: 50px;
+}
+
+.Product-card {
+    display: flex;
+    padding: .2rem;
+    /* border: 2px solid #C0804F; */
+    transition: 0.4s ease-in-out;
+    margin: 40px auto;
+    width: 60%;
+    padding: 1rem;
+}
+
+.Product-card:hover {
+    border-radius: 20px;
+    background-color: #f0e5e0;
+    transform: scale(1.05);
+    box-shadow: 0px 0px 5px rgba(133, 91, 60, 1);
+}
+.Product-card:hover img {
+    border-radius: 30px;
+    transform: scale(1.01);
+}
+.Product-card hr {
+    width: 40%;
+    border: 1px solid #fff;
+    transition: 0.6s ease-in-out;
+    margin: 0 auto;
+}
+.Product-card:hover hr {
+    width: 96%;
+}
+.Product-card-left {
+    width: 45%;
+    display: flex;
+    justify-content: center;
+}
+.Product-card-left .Pro-card-img {
+    width: 300px;
+}
+.Product-card-left .Pro-card-img img {
+    width: 100%;
+    padding: .7rem;
+    height: auto;
+    transition: 0.4s ease-in-out;
+    cursor: pointer;
+}
+.Product-card-right {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+.Product-card-right .Pro-card-head h2 {
+    margin: 20px 0;
+    font-size: 22px;
+    padding: .5rem;
+    color: #855b3c;
+    /* border: 1px solid darkblue; */
+    display: flex;
+    justify-content: center;
+}
+.Product-card .Pro-card-desc {
+    height: 130px;
+    /* border: 1px solid green; */
+    padding: .5rem;
+    margin-top: 15px;
+}
+.Product-card .Pro-card-desc p {
+    font-size: 16px;
+    /* border: 2px solid #C0804F; */
+    color: #855b3c;
+}
+.Product-card .Pro-card-desc span {
+    font-size: 20px;
+}
+.Pro-cart-total {
+    /* border: 1px solid green; */
+    text-align: right;
+    margin-top: 10px;
+    width: 100%;
+}
+.Pro-cart-total p {
+    font-size: 14px;
+    color: #855b3c;
+}
+.Pro-cart-total p span {
+    font-size: 20px;
+}
+
+.Pro-card-btm {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    /* border: 1px solid red; */
+}
+.Product-card .Pro-card-price p {
+    /* border: 2px solid #C0804F; */
+    padding: .5rem;
+    font-size: 18px;
+    color: #855b3c;
+}
+.Product-card .Pro-card-price span {
+    font-size: 24px;
+}
+.Pro-card-btm .Pro-card-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    text-decoration: none;
+    /* border: 1px solid #855b3c; */
+}
+.Pro-card-btm .Pro-card-icon a {
+    /* border: 1px solid #C0804F; */
+    padding: .3rem;
+    color: #855b3c;
+    transition: 0.4s ease-in-out;
+}
+/* .Pro-card-btm .Pro-card-icon:hover {
+    border: 1px solid #fff;
+} */
+.Product-card .Pro-card-icon a:hover {
+    border-radius: 50%;
+    /* border-radius: 12px; */
+    color: #fff;
+    background-color: #d9c2b1;
+    transform: scale(1.03);
+    box-shadow: 0px 0px 5px rgba(133, 91, 60, 1);
+}
+.Product-btn {
+    margin-top: 15px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.Product-btn .Cancel-btn {
+    margin: 12px 0;
+    cursor: pointer;
+    width: 50%;
+}
+.Product-btn .Cancel-btn a {
+    color: #855b3c;
+    padding: 2rem;
+}
+.Product-btn .Cancel-btn a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 8px;
+    /* background-color: #855b3c; */
+    color: #855b3c;
+    transition: 0.4s ease-in-out;
+}
+.Product-btn .Cancel-btn:hover a {
+    border-radius: 12px;
+    background-color: #d9c2b1;
+    color: #fff;
+    transform: scale(1.03);
+    box-shadow: 0px 0px 5px rgba(133, 91, 60, 1);
+}
+
+/* Arrow */
+.ProductArrow {
+    position: absolute;
+    /* top: 50%; */
+    font-size: 38px;
+    cursor: pointer;
+    color: #855b3c;
+    border-radius: 15px;
+}
+
+.left-arrow {
+    left: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.right-arrow {
+    right: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.Product-card {
+    position: relative;
+}
+
+.ProductArrow:hover {
+    /* background-color: #fff; */
+    color: #855b3c;
+    text-shadow: 0px 0px 5px rgba(133, 91, 60, 1);
+}

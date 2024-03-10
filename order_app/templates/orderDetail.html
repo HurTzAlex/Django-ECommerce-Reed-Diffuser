@@ -1,0 +1,117 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+{% load humanize %}
+
+{% block navBar %}
+<!-- Header Start -->
+<header>
+    <div class="container">
+        <nav>
+            <div class="nav-left">
+                <ul>
+                    <li><a href="/">Back To Main Page</a></li>
+                </ul>
+            </div>
+            <div class="nav-logo">
+                <a href="/">Nice Day |
+                    <span>
+                        "น้ำหอมก้านไม้"
+                    </span>
+                </a>
+            </div>
+            <div class="nav-right">
+                <div class="search-box">
+                    <form method="POST" action="{% url 'search' %}">
+                        {% csrf_token %}
+                    <input type="text" placeholder="Search..." name="searched">
+                    <button>
+                        <i class="bi bi-search"></i>
+                    </button>
+                    </form>
+                </div>
+
+                {% if request.user.is_authenticated %}
+                        <div class="icon user dropdown">
+                            <a href="#">
+                                <i class="bi bi-person-circle"></i>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dm" href="/orderHistory">Hello, {{ request.user.username }} ! </a>
+                                <a class="dm" href="{% url 'logout' %}">Logout</a>
+                            </div>
+                        </div>
+
+                        {% comment %} ถ้ามีการ Login จะให้แสดง ตะกร้าสินค้า {% endcomment %}
+                        <div class="icon cart">
+                            <a href="/cart">
+                                <i class="bi bi-bag"></i>
+                            </a>
+                        </div>
+
+                    {% else %}
+                        <div class="icon user dropdown">
+                            <a href="#">
+                                <i class="bi bi-person-circle"></i>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dm" href="{% url 'register' %}">Register</a>
+                                <a class="dm" href="{% url 'login' %}">Login</a>
+                            </div>
+                        </div>
+                        {% comment %} ถ้าไม่มีการ Login จะไม่ให้แสดง ตะกร้าสินค้า {% endcomment %}
+                    {% endif %}
+
+            </div>
+        </nav>
+    </div>
+</header>
+<!-- Header End -->
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="orderHistory">
+
+        <div class="orderDet-head">
+            <h1>
+                Order ID #{{ order.id }}
+            </h1>
+        </div>
+        <div class="orderHis-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in order_items %}
+                    <tr>
+                        <td> {{ item.product }} </td>
+                        <td> {{ item.price | intcomma }} </td>
+                        <td> {{ item.quantity }} Pieces </td>
+                        <td> {{ item.sub_total | intcomma }} </td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>Payment Total</td>
+                        <td> {{ order.total | intcomma }} </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="order-btm">
+            <a href="/orderHistory">Back</a>
+        </div>
+    </div>
+</div>
+
+ {% endblock %}

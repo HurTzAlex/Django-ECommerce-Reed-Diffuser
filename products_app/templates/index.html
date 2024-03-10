@@ -1,0 +1,507 @@
+{% extends "layout.html" %}
+
+{% load static %}
+{% load humanize %}
+
+{% block navBar %}
+    <!-- Header Start -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="nav-left">
+                    <ul>
+                        <li><a href="#about-page">About</a></li>
+                        <li><a href="#promotion-page">Promotion</a></li>
+                        <li><a href="#bestseller-page">Best Seller</a></li>
+                        <li><a href="#products-page">Products</a></li>
+                    </ul>
+                </div>
+
+                <div class="nav-logo">
+                    <li>
+                    <a href="/" onclick="scrollToTop()">Nice Day |
+                        <span>
+                            "น้ำหอมก้านไม้"
+                        </span>
+                    </a>
+                    </li>
+                </div>
+                
+                <div class="nav-right">
+                    <div class="search-box">
+                        <form method="POST" action="{% url 'search' %}">
+                            {% csrf_token %}
+                        <input type="text" placeholder="Search..." name="searched">
+                        <button>
+                            <i class="bi bi-search"></i>
+                        </button>
+                        </form>
+                    </div>
+
+                    {% comment %}
+                        User icon Dropdown - เพิ่มฟังก์ชั่น Login ตามด้วยชื่อ Username & Logout
+                    {% endcomment %}
+
+                    {% if request.user.is_authenticated %}
+                        <div class="icon user dropdown">
+                            <a href="#">
+                                <i class="bi bi-person-circle"></i>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dm" href="/orderHistory">Hello, {{ request.user.username }} ! </a>
+                                <a class="dm" href="{% url 'logout' %}">Logout</a>
+                            </div>
+                        </div>
+
+                        {% comment %} ถ้ามีการ Login จะให้แสดง ตะกร้าสินค้า {% endcomment %}
+                        <div class="icon cart">
+                            <a href="/cart">
+                                <i class="bi bi-bag"></i>
+                            </a>
+                        </div>
+
+                    {% else %}
+                        <div class="icon user dropdown">
+                            <a href="#">
+                                <i class="bi bi-person-circle"></i>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dm" href="{% url 'register' %}">Register</a>
+                                <a class="dm" href="{% url 'login' %}">Login</a>
+                            </div>
+                        </div>
+                        {% comment %} ถ้าไม่มีการ Login จะไม่ให้แสดง ตะกร้าสินค้า {% endcomment %}
+                    {% endif %}
+
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- Header End -->
+{% endblock %}
+
+{% block content %}
+    <!-- Banner Start -->
+    <div class="main-page" id="main-page"></div>
+    <div class="container">
+        <div class="banner">
+            <div class="banner-left">
+                <div class="bl-name">
+                    <h1>
+                        Nice Day |
+                        <span>
+                            "น้ำหอมก้านไม้"
+                        </span>
+                    </h1>
+                </div>
+                <div class="bl-desc">
+                    <h5>
+                        "Nice Day | น้ำหอมก้านไม้" is a special and unique fragrance with a long-lasting scent that
+                        accompanies you throughout the day. It offers an enduring aroma that allows you to enjoy its
+                        essence worry-free. With an affordable price and user-friendly application, "Nice Day Infinity"
+                        is the perfect choice for those seeking a distinctive and long-lasting fragrance experience.
+                    </h5>
+                </div>
+            </div>
+            <div class="banner-right">
+                <div class="br-img">
+                    <img src="{% static '/imageLogo/NiceDayLogo.jpeg' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Banner End -->
+
+
+    <!-- About Start -->
+    <div class="about-page" id="about-page"></div>
+    <div class="container">
+        <div class="about">
+            <div class="con-narrow">
+                <div class="about-desc">
+                    <hr style="margin: 40px 0px;">
+                    <div class="desc-top">
+                        <h1>
+                            Reed Diffuser
+                        </h1>
+                        <br>
+                        <h3>
+                            " ก้านไม้หอม น้ำหอมก้านไม้ ก้านไม้ปรับอากาศ ก้านไม้หอมกระจายกลิ่น "
+                        </h3>
+                    </div>
+                    <li>
+                        เป็นผลิตภัณฑ์ที่ใช้ในการแช่น้ำหอม(fragrance oil) และให้กลิ่นหอมที่ปล่อยออกมาผ่านก้านไม้(reeds)
+                        ก้านไม้จะดูดน้ำหอมขึ้นมาและกระจายกลิ่นออกมาในอากาศ
+                    </li>
+
+                    <li>
+                        Reed Diffuser เป็นวิธีที่ดีในการให้กลิ่นหอมในบ้านหรือสถานที่ทำงานโดยไม่ต้องใช้ไฟหรือเติมน้ำหล่อ
+                        มันมักจะให้กลิ่นหอมที่เป็นนวัตกรรมและแต่งห้องได้ดีในระยะยาว
+                    </li>
+                    <div class="desc-btm">
+                        <p>
+                            วิธีการใช้งาน :
+                            <span>
+                                เพียงแค่เสียบก้านไม้ ประมาณ <strong style="font-size: 26px;"> 3-4 </strong> ก้าน
+                                ลงไปในขวดน้ำมันหอมระเหย เท่านั้นกลิ่นก็จะค่อยๆ กระจาย
+                            </span>
+                        </p>
+                    </div>
+                    <hr style="margin-top: 40px; margin-bottom: 40px">
+                    <div class="desc-btm-advan">
+                        <h3>
+                            <strong>
+                                ข้อดี
+                            </strong>
+                            
+                        </h3>
+                        <li>
+                            <strong>
+                                ทำให้ห้องหรูหรา :
+                            </strong>
+                            Reed diffuser
+                            มักจะมีดีไซน์ที่สวยงามและหลากหลายทำให้เป็นอีกหนึ่งรูปแบบของตกแต่งภายในที่สามารถให้ห้องดูหรูหราและมีกลิ่นหอมนุ่มพร้อมกัน
+                        </li>
+                        <li>
+                            <strong>
+                                ใช้งานง่าย :
+                            </strong>
+                            ไม่ต้องใช้ไฟฟ้าหรือแท่งเทียนลงไป แค่เสียบไม้กันแล้ววางในขวดน้ำหอม
+                            ก็สามารถให้กลิ่นหอมพร้อมทำห้องสวยได้
+                        </li>
+                        <li>
+                            <strong>
+                                คงทนนาน :
+                            </strong>
+                            Reed diffuser มีความคงทนทานและสามารถให้กลิ่นหอมติดอยู่นานในช่วงเวลานานๆ
+                            โดยไม่ต้องใช้การติดตั้งหรือการใช้ไฟฟ้า
+                        </li>
+
+                    </div>
+                    <div class="desc-btm-advan">
+                        <h3>
+                            <strong>
+                                ข้อเสีย
+                            </strong>
+                            
+                        </h3>
+                        <li>
+                            <strong>
+                                ไม่สามารถปรับความเข้มข้นของกลิ่นได้ :
+                            </strong>
+                            Reed diffuser มักจะให้กลิ่นที่คงที่ และไม่สามารถปรับความเข้มข้นของกลิ่นได้ตามต้องการ
+                        </li>
+                        <li>
+                            <strong>
+                                อาจไม่เหมาะกับพื้นที่ใหญ่ :
+                            </strong>
+                            หากใช้ในพื้นที่ใหญ่มากๆ กลิ่นหอมอาจไม่ครอบคลุมพื้นที่ได้ทั่วถึง
+                        </li>
+                        <li>
+                            <strong>
+                                อาจทำให้พื้นผิวเสียหาย :
+                            </strong>
+                            น้ำหอมที่ตกค้างบนพื้นไม่ดีสำหรับวัสดุบางประการ อาจทำให้เกิดความเสียหายกับพื้นผิว
+                        </li>
+
+                    </div>
+
+                    <hr style="margin-top: 40px; margin-bottom: 60px" id="promotion-page">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+
+
+    <!-- Pro Start -->
+    <div class="container">
+        <div class="promotion">
+
+            <div class="promo-img">
+                {% for productPromotion in productPromotions %}
+                <img src="{{ productPromotion.imagePromotion.url }}" alt="">
+                {% endfor %}
+            </div>
+            <div class="promo-detail">
+
+                <h3>
+                    Special
+                    <br>
+                    <span>
+                        Promotion
+                    </span>
+                    <br>
+                    on
+                </h3>
+                <h1 id="promotion">
+
+                </h1>
+                <div class="promo-desc">
+                    <li>
+                        Buy 2 get 1 free
+                        <span>
+                            (Mix Scent Available)
+                        </span>
+                    </li>
+                    <li>
+                        Buy 5 Pieces or More
+                        <span>
+                            (Get 10% Discount)
+                        </span>
+                    </li>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Pro End -->
+
+
+
+    <!-- Best Seller Start -->
+    <div class="bestseller-page" id="bestseller-page"></div>
+    <div class="container">
+        <div class="bestsell-head">
+            <h1>
+                Best Seller
+            </h1>
+        </div>
+        <div class="all-bestsell">
+            <div class="bestsell">
+
+                {% for productBest in productBestSeller %}
+                <div class="bestsell-card">
+                    <div class="card-img">
+                        <a href="{% url 'productBestDetail' productBest.id %}">
+                            <img src="{{ productBest.image.url }}" alt="">
+                        </a>
+                    </div>
+                    <div class="card-head">
+                        <div class="card-name">
+                            <a href="{% url 'productBestDetail' productBest.id %}">
+                                <h2>Reed Diffuser | {{ productBest.name }}</h2>
+                            </a>
+                        </div>
+                            
+                        <div class="card-price">
+                            <p>
+                                Price :
+                                <span>
+                                    {{ productBest.price | intcomma }}
+                                </span>
+                                Baht
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            
+            </div>
+        </div>
+    </div>
+    <!-- Best Seller End -->
+
+
+    <!-- Products Start -->
+    <div class="products-page" id="products-page"></div>
+    <div class="container">
+        <div class="product">
+            <div class="product-head">
+                <h1>
+                    Products
+                </h1>
+            </div>
+            <div class="products">
+                <div class="all-products">
+                    {% for products in all_products %}
+                        <div class="product-card">
+                        <div class="pro-card-img">
+                            <a href="{% url 'all_products' products.id %}">
+                                <img src="{{ products.image.url }}" alt="">
+                            </a>
+                        </div>
+                        <div class="pro-card-head">
+                            <a href="{% url 'all_products' products.id %}">
+                                <h2>
+                                    Reed Diffuser | {{ products.name }}
+                                </h2>
+                            </a>
+                        </div>
+                        <hr>
+                        <div class="pro-card-desc">
+                            <p>
+                                {{ products.description }}
+                            </p>
+                        </div>
+                        <div class="pro-card-btm">
+                            <div class="pro-card-price">
+                                <p>
+                                    Price :
+                                    <span>
+                                        {{ products.price | intcomma }}
+                                    </span>
+                                    Baht
+                                </p>
+                            </div>
+                            {% if products.stock <= 0 %}
+                                <p style="text-decoration: line-through; color: red;">
+                                    สินค้าหมด
+                                </p>
+                                {% else %}
+                                <div class="pro-card-icon">
+                                    <a href="{% url 'addCart' products.id %}">
+                                        <i class="bi bi-bag"></i>
+                                    </a>
+                                </div>
+                            {% endif %}
+                        </div>
+                        </div>
+                    {% endfor %}
+
+
+                    <!-- Pagination Start -->
+                    {% comment %} <div class="pagination">
+                        {% for num in all_products.paginator.page_range %}
+                            {% if num != all_products.number %}
+                                <a href="?page={{ num }}"> {{ num }} </a>
+                            {% else %}
+                                <a href="?page={{ num }}" class="active"> {{ num }} </a>
+                            {% endif %}
+                        {% endfor %}
+                    </div> {% endcomment %}
+                    <!-- Pagination End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Products End -->
+
+{% endblock %}
+
+{% block footer %}
+<footer>
+    <div class="footer">
+        <div class="footer-head">
+            <h1>
+                Nice Day |
+                <span>
+                    "น้ำหอมก้านไม้"
+                </span>
+            </h1>
+        </div>
+        <div class="container">
+
+            <div class="footer-box">
+                <div class="box-left">
+                    <div class="box-l-head">
+                        <h1>
+                            Nice Day |
+                            <span>
+                                "น้ำหอมก้านไม้"
+                            </span>
+                        </h1>
+                    </div>
+                    <div class="box-l-detail">
+                        <p>
+                            <span>
+                                จุดประสงค์ :
+                            </span>
+                            เป็นการสร้างเว็บไซต์ E-Commerce เพื่อศึกษากระบวนการทำงาน การฝึกทักษะการพัฒนาเว็บไซต์
+                            และแบ่งปันความรู้เกี่ยวกับผลิตภัณฑ์น้ำหอมก้านไม้ (Reed Diffuser)
+                            <br>
+                            <span>
+                                Programming Language :
+                            </span>
+                            Html, Css, JavaScript & Python
+                            <br>
+                            <span>
+                                Bootstrap Framework :
+                            </span>
+                            Bootstrap ใช้ในการตกแต่งหน้าตาของเว็บไซต์หรือเรียกว่า UI(User Interface)
+                            <br>
+                            <span>
+                                Django Framework :
+                            </span>
+                            Django ใช้สำหรับพัฒนาเว็บด้วยภาษา Python ใช้สำหรับสร้างและบริหารจัดการเว็บแอพพลิเคชั่น
+                            โดยมีฟีเจอร์และโมเดลที่ช่วยในการจัดการฐานข้อมูล
+                        </p>
+                    </div>
+                </div>
+
+                <div class="box-right">
+                    <div class="box-r-head">
+                        <h1>
+                            Social
+                        </h1>
+                    </div>
+                    <div class="box-r-detail">
+
+                        <ul class="detail-wrapper">
+                            <li class="icon facebook" id="facebook">
+                                <span class="tooltip">Facebook</span>
+                                <span><i class="bi bi-facebook"></i></span>
+                            </li>
+                            <li class="icon instagram" id="instagram">
+                                <span class="tooltip">Instagram</span>
+                                <span><i class="bi bi-instagram"></i></span>
+                            </li>
+                            <li class="icon tiktok" id="tiktok">
+                                <span class="tooltip">Tiktok</span>
+                                <span><i class="bi bi-tiktok"></i></span>
+                            </li>
+                            <li class="icon linkedin" id="linkedin">
+                                <span class="tooltip">Linkedin</span>
+                                <span><i class="bi bi-linkedin"></i></span>
+                            </li>
+                            <li class="icon github" id="github">
+                                <span class="tooltip">Github</span>
+                                <span><i class="bi bi-github"></i></span>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <hr style="border: 1px solid #855b3c; margin: 30px 0;">
+
+                    <div class="box-right-btm">
+                        <div class="box-r-head">
+                            <h1>
+                                Contact
+                            </h1>
+                        </div>
+                        <div class="box-r-detail">
+
+                            <ul class="detail-wrapper-btm">
+                                <li class="icon phone" id="phone">
+                                    <span class="tooltip">Telephone</span>
+                                    <span><i class="bi bi-phone"></i></span>
+                                </li>
+                                <li class="icon line" id="line">
+                                    <span class="tooltip">Line</span>
+                                    <span><i class="bi bi-line"></i></span>
+                                </li>
+                                <li class="icon email" id="email">
+                                    <span class="tooltip">Email</span>
+                                    <span><i class="bi bi-envelope"></i></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+{% endblock %}
+
+
+{% block navFooter %}
+<nav>
+    <div class="copy-right" id="copy-right">
+        <h1>
+            Copyright &copy; <span id="startYear"></span> - <span id="currentYear"></span> By Nice Day | <span
+                id="logoName">"น้ำหอมก้านไม้"</span>
+        </h1>
+    </div>
+</nav>
+{% endblock %}

@@ -1,0 +1,130 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+{% load humanize %}
+
+{% block navBar %}
+<!-- Header Start -->
+<header>
+    <div class="container">
+        <nav>
+            <div class="nav-left">
+                <ul>
+                    <li><a href="/">Back To Main Page</a></li>
+                </ul>
+            </div>
+            <div class="nav-logo">
+                <a href="/">Nice Day |
+                    <span>
+                        "น้ำหอมก้านไม้"
+                    </span>
+                </a>
+            </div>
+            <div class="nav-right">
+                <div class="search-box">
+                    <form method="POST" action="{% url 'search' %}">
+                        {% csrf_token %}
+                    <input type="text" placeholder="Search..." name="searched">
+                    <button>
+                        <i class="bi bi-search"></i>
+                    </button>
+                    </form>
+                </div>
+
+                {% if request.user.is_authenticated %}
+                        <div class="icon user dropdown">
+                            <a href="#">
+                                <i class="bi bi-person-circle"></i>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dm" href="/orderHistory">Hello, {{ request.user.username }} ! </a>
+                                <a class="dm" href="{% url 'logout' %}">Logout</a>
+                            </div>
+                        </div>
+
+                        {% comment %} ถ้ามีการ Login จะให้แสดง ตะกร้าสินค้า {% endcomment %}
+                        <div class="icon cart">
+                            <a href="/cart">
+                                <i class="bi bi-bag"></i>
+                            </a>
+                        </div>
+
+                    {% else %}
+                        <div class="icon user dropdown">
+                            <a href="#">
+                                <i class="bi bi-person-circle"></i>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dm" href="{% url 'register' %}">Register</a>
+                                <a class="dm" href="{% url 'login' %}">Login</a>
+                            </div>
+                        </div>
+                        {% comment %} ถ้าไม่มีการ Login จะไม่ให้แสดง ตะกร้าสินค้า {% endcomment %}
+                    {% endif %}
+
+            </div>
+        </nav>
+    </div>
+</header>
+<!-- Header End -->
+{% endblock %}
+
+{% block content %}
+
+{% if not orders %}
+
+<div class="container">
+    <div class="orderHistory">
+
+        <div class="orderHis-head">
+            <h1>
+                No Purchase History
+            </h1>
+        </div>
+        <div class="orderHis-btm">
+            <a href="/">Back to main page</a>
+        </div>
+        
+    </div>
+</div>
+
+{% else %}
+
+<div class="container">
+    <div class="orderHistory">
+
+        <div class="orderHis-head">
+            <h1>
+                Order Information
+            </h1>
+        </div>
+        <div class="orderHis-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Order Date</th>
+                        <th>Total Amount</th>
+                        <th>View Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in orders %}
+                    <tr>
+                        <td> {{ item.id }} </td>
+                        <td> {{ item.created | date:'M d, Y | H:i:s' }} </td>
+                        {% comment %} <td> {{ item.created | date:'(D) d M Y' }} </td> {% endcomment %}
+                        <td> {{ item.total | intcomma }} Baht </td>
+                        <td><a href="{% url 'orderDetail' item.id %}">View Details</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div></div>
+        
+    </div>
+</div>
+
+{% endif %}
+ {% endblock %}

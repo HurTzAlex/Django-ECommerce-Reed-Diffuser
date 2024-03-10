@@ -1,0 +1,171 @@
+/* Order.html */
+.order {
+    width: 80%;
+    /* height: 890px; */
+    margin: 50px auto;
+    /* border: 1px solid red; */
+    padding: 3rem;
+    background-color: #fff;
+}
+.order-page {
+    /* border: 1px solid red; */
+    box-shadow:  -10px -10px 20px #cccccc,
+    10px -10px 20px #cccccc,
+    -10px 10px 20px #cccccc,
+    10px 10px 20px #cccccc;
+    background-color: #f9f4f0;
+    transition: 0.6s ease-in-out;
+}
+.order-page-top {
+    /* border: 1px solid pink; */
+    width: 100%;
+    /* height: 100%; */
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+.order-main h1 {
+    /* border: 1px solid red; */
+    font-size: 26px;
+    text-align: left;
+    padding: 2rem 0 0rem 1rem;
+    opacity: 0.5;
+}
+.order-main p {
+    /* display: flex;
+    justify-content: left;
+    align-items: center; */
+    text-align: right;
+    display: inline-block;
+    font-size: 14px;
+    line-height: 1.5rem;
+    
+    opacity: 0;
+    visibility: hidden;
+    
+    transition: 1200ms;
+    transform: translateX(300px);
+}
+/* Daily Products Hover */
+.order-page:hover .order-main p {
+    /* border: 1px solid red; */
+    opacity: .5;
+    visibility: visible;
+    /* display: flex;
+    justify-content: left;
+    align-items: center; */
+    text-align: left;
+    display: inline-block;
+    padding: 1.5rem;
+    
+    transition: 1200ms;
+    transform: translateX(0px);
+}
+
+.top-detail {
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+/* Form Cart Address, Tel., Etc. */
+.cart-form {
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+}
+
+.form-group {
+    position: relative;
+    transition: 1200ms;
+}
+.form-group input {
+    width: 580px;
+    padding: 8px 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: #acacac solid 2px;
+    background-color: transparent;
+    color: #797979;
+    transition: 0.15s all ease;
+    transition: 600ms;
+}
+.form-group:hover input {
+    transform: scale(1.05);
+    transition: 600ms;
+}
+.order-page:hover .form-group {
+    margin-bottom: 35px;
+    transition: 800ms;
+}
+.form-group input:focus {
+    border-color: #eee;
+}
+.form-group input::placeholder {
+    color: transparent;
+}
+.form-group .form-label {
+    position: absolute;
+    top: 9px;
+    left: 0;
+    font-size: 18px;
+    padding: 0 10px;
+    color: #acacac;
+    pointer-events: none;
+    transition: 0.15s all ease;
+}
+.form-group input:focus + .form-label,
+.form-group input:not(:placeholder-shown) + .form-label {
+    transform: translate(-40%, -40px);
+    background-color: #acacac;
+    font-size: 18px;
+    color: #eee;
+    padding: .5rem .9rem;
+    border-radius: 3px;
+    opacity: 0.9;
+}
+
+.cart-form-btn {
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    width: 100%;
+}
+.cart-form-btn .btn {
+    cursor: pointer;
+    font-size: 16px;
+    border-color: #797979;
+    border: #acacac solid 2px;
+    padding: 8px 10px;
+    border-radius: 6px;
+    transition: 1200ms;
+    color: #acacac;
+    background-color: transparent;
+}
+.order-page:hover .btn {
+    margin-bottom: 10px;
+    transition: 800ms;
+}
+.btn-Confirm:hover {
+    font-size: 22px;
+    background-color: #d4b59c;
+    border: 2px solid #d4b59c;
+    color: #fff;
+    box-shadow: 0px 0px 5px 5px rgba(212, 181, 156, 0.19);
+    text-transform: uppercase;
+    transform: scale(1.05);
+}
+.btn-Clear:hover {
+    font-size: 22px;
+    background-color: #d4b59c;
+    border: 2px solid #d4b59c;
+    color: #fff;
+    box-shadow: 0px 0px 5px 5px rgba(212, 181, 156, 0.19);
+    text-transform: uppercase;
+    transform: scale(1.05);
+}

@@ -1,0 +1,147 @@
+.modal-reg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.modal-reg-card {
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 520px;
+    border-radius: 10px;
+    background: #fff;
+    z-index: 10;
+    padding: 10px;
+    position: relative;
+    margin-top: 10vh;
+    margin-bottom: 5vh;
+}
+
+.modal-reg-card .reg-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.modal-reg-card .reg-card .reg-top {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: .5rem;
+}
+.modal-reg-card .reg-top h1 {
+    color: #855b3c;
+    font-size: 26px;
+}
+.modal-reg-card .reg-top h1 span {
+    font-size: 20px;
+}
+.modal-reg-card .reg-top p {
+    color: #855b3c;
+    font-size: 14px;
+    margin: 5px 0;
+}
+.modal-reg-card .reg-card .reg-middle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: .5rem;
+}
+
+
+/* Alert */
+.form-top .alert {
+    font-size: 16px;
+    text-align: center;
+    padding: 1.2rem;
+    color: #fff;
+    border-radius: 6px;
+}
+.alert-warning {
+    background-color: #e67575;
+}
+.alert-success {
+    background-color: #85cc70;
+}
+
+
+
+#usernameForm,
+#emailForm,
+#pswForm,
+#psw-repeatForm {
+    border-radius: 6px;
+}
+
+.reg-middle form .form-top input[type=text],
+.reg-middle form .form-top input[type=password] {
+    width: 100%;
+    padding: 10px;
+    margin: 3px 0 8px 0;
+    display: inline-block;
+    border: none;
+    background-color: #b97449;
+}
+.reg-middle form .form-top input[type=text]:focus,
+.reg-middle form .form-top input[type=password]:focus {
+    background-color: #eec5ac;
+    color: #855b3c;
+    outline: none;
+}
+.registerbtn {
+    background-color: #b97449;
+    color: #fff;
+    padding: 12px 0;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 6px;
+    opacity: 0.8;
+}
+.registerbtn:hover {
+    opacity: 1;
+}
+.signin {
+    background-color: #f1f1f1;
+    text-align: center;
+    padding: 12px;
+    width: 96%;
+    margin: 0 auto;
+    border-radius: 6px;
+}
+.reg-middle form a {
+    color: dodgerblue;
+    opacity: 0.9;
+}
+form a:hover {
+    opacity: 1;
+}
+form .form-top {
+    padding: .6rem;
+}
+form .form-top p {
+    color: #855b3c;
+    padding: 6px 0;
+    text-align: left;
+}
+form .form-top b {
+    color: #855b3c;
+    font-size: 14px;
+}
+form .form-top input::placeholder {
+    color: #fff;
+}
+form .form-btm p {
+    color: #855b3c;
+    font-size: 14px;
+}
+form .form-btm a {
+    cursor: pointer;
+}
+
+
+
+

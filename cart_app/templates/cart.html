@@ -1,0 +1,244 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+{% load humanize %}
+
+{% block navBar %}
+<!-- Header Start -->
+<header>
+    <div class="container">
+        <nav>
+            <div class="nav-left">
+                <ul>
+                    <li><a href="/">Back To Main Page</a></li>
+                </ul>
+            </div>
+            <div class="nav-logo">
+                <a href="/">Nice Day |
+                    <span>
+                        "น้ำหอมก้านไม้"
+                    </span>
+                </a>
+            </div>
+            <div class="nav-right">
+                <div class="search-box">
+                    <input type="text" placeholder="Search...">
+                    <button>
+                        <i class="bi bi-search"></i>
+                    </button>
+                </div>
+
+                {% if request.user.is_authenticated %}
+                        <div class="icon user dropdown">
+                            <a href="#">
+                                <i class="bi bi-person-circle"></i>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dm" href="/orderHistory">Hello, {{ request.user.username }} ! </a>
+                                <a class="dm" href="{% url 'logout' %}">Logout</a>
+                            </div>
+                        </div>
+
+                        {% comment %} ถ้ามีการ Login จะให้แสดง ตะกร้าสินค้า {% endcomment %}
+                        <div class="icon cart">
+                            <a href="/cart">
+                                <i class="bi bi-bag"></i>
+                            </a>
+                        </div>
+
+                    {% else %}
+                        <div class="icon user dropdown">
+                            <a href="#">
+                                <i class="bi bi-person-circle"></i>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dm" href="{% url 'register' %}">Register</a>
+                                <a class="dm" href="{% url 'login' %}">Login</a>
+                            </div>
+                        </div>
+                        {% comment %} ถ้าไม่มีการ Login จะไม่ให้แสดง ตะกร้าสินค้า {% endcomment %}
+                    {% endif %}
+
+            </div>
+        </nav>
+    </div>
+</header>
+<!-- Header End -->
+{% endblock %}
+
+{% block content %}
+    
+    {% if not cart_item %}
+
+    <div class="cart-page">
+        <div class="cart-page-header">
+            <h1>
+                <span>
+                    {{ request.user.username }}'s
+                </span>
+                Cart
+            </h1>
+        </div>
+        <div class="cart-main">
+            <div class="cart-left">
+                <div class="cart-empty-icon">
+                    <a href="/">
+                        <i class="bi bi-basket"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="cart-right">
+                <div class="cart-right-btn">
+                    <a href="/">Back To Main Page</a>
+                </div>
+            </div>
+        </div>
+        <span>
+        </span>
+    </div>
+    </div>
+
+    {% else %}
+    
+    <div class="cart-page">
+        <div class="cart-page-header">
+            <h1>
+                <span>
+                    {{ request.user.username }}'s
+                </span>
+                Cart
+            </h1>
+        </div>
+        <div class="cart-main">
+            <div class="cart-left">
+                <div class="cart-header">
+                    <h1>
+                        Order
+                    </h1>
+                </div>
+                <div class="cart-list">
+
+                    {% for item in cart_item %}
+                    <div class="cart-items">
+                        <div class="cart-items-left">
+                            <img src="{{ item.product.image.url }}" alt="">
+                            <div class="cart-items-detail">
+                                <div class="cart-detail-name">
+                                    <p>
+                                        <span>
+                                        Reed Diffuser | 
+                                        </span>
+                                        {{ item.product.name }}
+                                    </p>
+                                </div>
+                                <div class="cart-detail-price">
+                                    <p>
+                                        <span>
+                                        Price :
+                                        </span> 
+                                        {{ item.product.price | intcomma }}
+                                        <span>
+                                            Baht
+                                        </span>
+                                    </p>
+                                </div>
+                                <div class="cart-total-price">
+                                    <p>
+                                        [
+                                        {{ item.quantity }}
+                                        <span>
+                                            x
+                                        </span>
+                                        {{ item.product.price | intcomma }}
+                                        <span>
+                                        =
+                                        </span>
+                                        {{ item.sub_total | intcomma }}
+                                        <span>
+                                            Baht
+                                        </span>
+                                        ]
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cart-items-right">
+                                <a class="btnTrash" href="{% url 'removeCart' item.product.id %}"
+                                    onclick="return confirm('Are you sure to delete this cart?')" >
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                        </div>
+
+                    </div>
+                    {% endfor %}
+
+                </div>
+
+                
+            </div>
+            <div class="cart-right">
+
+                <div class="cart-header">
+                    <h1>
+                        Order Summary
+                    </h1>
+                </div>
+                <div class="cart-sum">
+                    <span>
+                    </span>
+                    <div class="cart-sum-detail">
+                        <p>
+                            Products :
+                            <span>
+                                {{ count }}
+                            </span>
+                            Pieces
+                        </p>
+                    </div>
+                    <hr>
+                    <div class="cart-sum-detail">
+                        <p>
+                            Price :
+                            <span>
+                                {{ total | intcomma }}
+                            </span>
+                            Baht
+                        </p>
+                    </div>
+                </div>
+
+                <div class="cart-header">
+                    <h1>
+                        Promotion
+                    </h1>
+                </div>
+                <div class="cart-sum">
+                    <span>
+                    </span>
+                    <div class="cart-sum-detail">
+                        <p>
+                            Promotion Name
+                            <span>
+                                {{ count }}
+                            </span>
+                            wild awake
+                        </p>
+                    </div>
+                </div>
+
+                <div class="cart-right-btn">
+                    <a href="/order">Click to Buy</a>
+                    <a href="/">Back To Main Page</a>
+                </div>
+
+            </div>
+        </div>
+        <span>
+        </span>
+    </div>
+
+    {% endif %}
+
+{% endblock %}
+
